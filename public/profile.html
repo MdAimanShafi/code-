@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile – SocialConnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar"></nav>
+
+<div class="container">
+
+  <!-- PROFILE CARD -->
+  <div class="profile-info-card card" id="profile-card">
+    <div class="loader"><div class="spinner"></div>Loading profile…</div>
+  </div>
+
+  <!-- USER POSTS -->
+  <div class="section-title" style="margin-top:24px">Posts</div>
+  <div id="user-posts">
+    <div class="loader"><div class="spinner"></div></div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>CodeAlpha SocialConnect</strong> &nbsp;|&nbsp;
+  Developed by <strong>MD Aiman Shafi</strong> &nbsp;|&nbsp;
+  Kalinga University &nbsp;|&nbsp;
+  <a href="mailto:mdaimanshafi492@gmail.com">mdaimanshafi492@gmail.com</a> &nbsp;|&nbsp;
+  +91-7543983040
+</footer>
+
+<script src="/js/app.js"></script>
+<script>
+  const user = Auth.require();
+  renderNavbar('profile');
+
+  // Get URL param for viewing other users' profiles
+  const params = new URLSearchParams(window.location.search);
+  const viewingEmail = params.get('user') ? decodeURIComponent(params.get('user')) : user.email;
+  const isOwnProfile = viewingEmail === user.email;
+
+  async function loadProfile() {
+    try {
+      const [profile, posts] = await Promise.all([
+        API.get(`/user/${encodeURIComponent(viewingEmail)}`),
+        API.get(`/posts/user/${encodeURIComponent(viewingEmail)}`)
+      ]);
+
+      const totalLikes = posts.reduce((s, p) => s + p.likes.length, 0);
+      const av = profile.avatar
+        ? `<img src="${profile.avatar}" onerror="this.style.display='none'">`
+        : initials(profile.name);
+
+      const followers = (profile.followers || []).length;
+      const following = (profile.following || []).length;
+      const isFollowing = user.following && user.following.includes(viewingEmail);
+
+      document.getElementById('profile-card').innerHTML = `
+        <div class="profile-cover"></div>
+        <div class="profile-avatar-wrap">
+          <div class="profile-avatar-big">${av}</div>
+        </div>
+        <div class="profile-details">
+          <div class="profile-name">${profile.name}</div>
+          <div class="profile-email">${profile.email}</div>
+          <div class="profile-bio">${profile.bio || '<em style="color:var(--muted)">No bio yet</em>'}</div>
+          <div class="profile-stats">
+            <div class="profile-stat"><div class="profile-stat-num">${posts.length}</div><div class="profile-stat-label">Posts</div></div>
+            <div class="profile-stat"><div class="profile-stat-num">${totalLikes}</div><div class="profile-stat-label">Likes</div></div>
+            <div class="profile-stat"><div class="profile-stat-num">${followers}</div><div class="profile-stat-label">Followers</div></div>
+            <div class="profile-stat"><div class="profile-stat-num">${following}</div><div class="profile-stat-label">Following</div></div>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:8px">
+            ${isOwnProfile 
+              ? `<button class="btn btn-primary btn-sm" onclick="toggleEditForm()">✏️ Edit Profile</button>`
+              : `<button class="btn btn-primary btn-sm ${isFollowing ? 'following' : ''}" id="follow-btn" onclick="toggleFollow('${viewingEmail}', this)">${isFollowing ? '✓ Following' : '+ Follow'}</button>`
+            }
+          </div>
+        </div>
+        ${isOwnProfile ? `
+        <div class="profile-edit-form" id="edit-form">
+          <div class="section-title">Edit Profile</div>
+          <div class="form-group" style="margin-top:12px">
+            <label>Full Name</label>
+            <input type="text" id="e-name" value="${profile.name}">
+          </div>
+          <div class="form-group">
+            <label>Bio</label>
+            <textarea id="e-bio" rows="3">${profile.bio || ''}</textarea>
+          </div>
+          <div class="form-group">
+            <label>Avatar URL</label>
+            <input type="text" id="e-avatar" value="${profile.avatar || ''}" placeholder="https://…">
+          </div>
+          <div style="display:flex;gap:8px;margin-top:4px">
+            <button class="btn btn-primary btn-sm" onclick="saveProfile()">Save</button>
+            <button class="btn btn-ghost btn-sm" onclick="toggleEditForm()">Cancel</button>
+          </div>
+        </div>` : ''
+        }`;
+
+      // Render posts
+      const postsEl = document.getElementById('user-posts');
+      if (!posts.length) {
+        postsEl.innerHTML = `<div class="empty-state"><div class="empty-icon">📝</div><p>${isOwnProfile ? 'You haven\\'t' : profile.name + ' hasn\\'t'} posted anything yet.</p></div>`;
+      } else {
+        postsEl.innerHTML = posts.map(p => buildPostCard(p, user)).join('');
+      }
+    } catch(e) {
+      document.getElementById('profile-card').innerHTML = `<div class="empty-state"><p>Failed to load profile.</p></div>`;
+    }
+  }
+
+  function toggleEditForm() {
+    document.getElementById('edit-form').classList.toggle('open');
+  }
+
+  async function saveProfile() {
+    const name   = document.getElementById('e-name').value.trim();
+    const bio    = document.getElementById('e-bio').value.trim();
+    const avatar = document.getElementById('e-avatar').value.trim();
+    if (!name) return showToast('Name cannot be empty', 'error');
+    try {
+      const updated = await API.put(`/user/${encodeURIComponent(user.email)}`, { name, bio, avatar });
+      Auth.set(updated);
+      showToast('Profile updated!', 'success');
+      loadProfile();
+    } catch(e) { showToast(e.message, 'error'); }
+  }
+
+  loadProfile();
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+  "name": "codealpha-socialconnect",
+  "version": "2.0.0",
+  "description": "CodeAlpha SocialConnect - Advanced Social Media App by MD Aiman Shafi",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "uuid": "^9.0.0",
+    "bcryptjs": "^2.4.3"
+  }
+}

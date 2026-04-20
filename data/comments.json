@@ -1,0 +1,58 @@
+[
+  {
+    "id": "comment-1",
+    "postId": "post-1",
+    "userEmail": "alex@example.com",
+    "userName": "Alex Mitchell",
+    "text": "This looks amazing! I want to go hiking there too! 🏔️",
+    "createdAt": "2026-04-18T15:10:00.000Z"
+  },
+  {
+    "id": "comment-2",
+    "postId": "post-1",
+    "userEmail": "emma@example.com",
+    "userName": "Emma Wilson",
+    "text": "The sunset must have been incredible! 🌅",
+    "createdAt": "2026-04-18T15:45:00.000Z"
+  },
+  {
+    "id": "comment-3",
+    "postId": "post-2",
+    "userEmail": "sarah@example.com",
+    "userName": "Sarah Anderson",
+    "text": "Wow, congratulations! This is huge! 🎉",
+    "createdAt": "2026-04-17T10:20:00.000Z"
+  },
+  {
+    "id": "comment-4",
+    "postId": "post-2",
+    "userEmail": "john@example.com",
+    "userName": "John Developer",
+    "text": "Amazing work! I'm definitely checking this out!",
+    "createdAt": "2026-04-17T11:30:00.000Z"
+  },
+  {
+    "id": "comment-5",
+    "postId": "post-3",
+    "userEmail": "sarah@example.com",
+    "userName": "Sarah Anderson",
+    "text": "Can't wait to see the final designs! Your work is always stunning 😍",
+    "createdAt": "2026-04-16T17:00:00.000Z"
+  },
+  {
+    "id": "comment-6",
+    "postId": "8af32c1a-977f-42ba-af64-84b5fa80a374",
+    "userEmail": "alex@example.com",
+    "userName": "Alex Mitchell",
+    "text": "Fantastic launch! This is going to be huge! 🔥",
+    "createdAt": "2026-04-19T19:00:00.000Z"
+  },
+  {
+    "id": "4276202c-9951-4241-98dc-c318d4f83b19",
+    "postId": "4e5afb13-7e3a-471d-a626-580c6b20c586",
+    "userEmail": "ai@gmail.com",
+    "userName": "AI",
+    "text": "bail",
+    "createdAt": "2026-04-20T10:24:43.175Z"
+  }
+]

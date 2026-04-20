@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard – SocialConnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar"></nav>
+
+<div class="container-wide">
+
+  <div style="margin-bottom:20px">
+    <h2 id="dash-greeting" style="font-size:1.5rem;font-weight:800"></h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-top:4px">Here's your activity overview</p>
+  </div>
+
+  <!-- STATS GRID -->
+  <div class="dashboard-grid" id="stats-grid">
+    <div class="loader"><div class="spinner"></div></div>
+  </div>
+
+  <!-- RECENT POSTS -->
+  <div class="section-title">Your Recent Posts</div>
+  <div id="recent-posts">
+    <div class="loader"><div class="spinner"></div></div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>CodeAlpha SocialConnect</strong> &nbsp;|&nbsp;
+  Developed by <strong>MD Aiman Shafi</strong> &nbsp;|&nbsp;
+  Kalinga University &nbsp;|&nbsp;
+  <a href="mailto:mdaimanshafi492@gmail.com">mdaimanshafi492@gmail.com</a> &nbsp;|&nbsp;
+  +91-7543983040
+</footer>
+
+<script src="/js/app.js"></script>
+<script>
+  const user = Auth.require();
+  renderNavbar('dashboard');
+
+  document.getElementById('dash-greeting').textContent = `👋 Welcome back, ${user.name}!`;
+
+  async function loadDashboard() {
+    try {
+      const [allPosts, userPosts, userProfile] = await Promise.all([
+        API.get('/posts'),
+        API.get(`/posts/user/${encodeURIComponent(user.email)}`),
+        API.get(`/user/${encodeURIComponent(user.email)}`)
+      ]);
+
+      const totalLikes = userPosts.reduce((s, p) => s + p.likes.length, 0);
+      const totalComments = userPosts.reduce((s, p) => s + (p.comments || []).length, 0);
+      const followers = (userProfile.followers || []).length;
+      const following = (userProfile.following || []).length;
+
+      document.getElementById('stats-grid').innerHTML = `
+        <div class="stat-card">
+          <div class="stat-icon purple">📝</div>
+          <div><div class="stat-num">${userPosts.length}</div><div class="stat-label">Your Posts</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon pink">❤️</div>
+          <div><div class="stat-num">${totalLikes}</div><div class="stat-label">Total Likes</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">💬</div>
+          <div><div class="stat-num">${totalComments}</div><div class="stat-label">Comments</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">👥</div>
+          <div><div class="stat-num">${followers}</div><div class="stat-label">Followers</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">🔗</div>
+          <div><div class="stat-num">${following}</div><div class="stat-label">Following</div></div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon pink">🌐</div>
+          <div><div class="stat-num">${allPosts.length}</div><div class="stat-label">Total Posts</div></div>
+        </div>`;
+
+      const recentEl = document.getElementById('recent-posts');
+      const recent = userPosts.slice(0, 5);
+      if (!recent.length) {
+        recentEl.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><p>You haven't posted anything yet. <a href="/" style="color:var(--primary)">Create your first post!</a></p></div>`;
+      } else {
+        recentEl.innerHTML = recent.map(p => buildPostCard(p, user)).join('');
+      }
+    } catch(e) {
+      document.getElementById('stats-grid').innerHTML = `<div class="empty-state"><p>Failed to load dashboard.</p></div>`;
+    }
+  }
+
+  loadDashboard();
+</script>
+</body>
+</html>

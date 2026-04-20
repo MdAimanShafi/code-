@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login – SocialConnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f64f59 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .auth-page {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f64f59 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .auth-card {
+      background: white;
+      border-radius: 20px;
+      padding: 48px 40px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      animation: slideUp 0.5s ease;
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .auth-logo {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+      background: linear-gradient(135deg, #6c63ff, #ff6584);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .auth-subtitle {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 32px;
+    }
+
+    .auth-tabs {
+      display: flex;
+      background: var(--bg);
+      border-radius: 12px;
+      padding: 6px;
+      margin-bottom: 28px;
+      gap: 4px;
+    }
+
+    .auth-tab {
+      flex: 1;
+      padding: 11px;
+      border-radius: 10px;
+      background: none;
+      border: none;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--muted);
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .auth-tab.active {
+      background: white;
+      color: var(--primary);
+      box-shadow: var(--shadow);
+    }
+
+    .auth-tab:hover:not(.active) {
+      color: var(--text);
+    }
+
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 12px 16px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: var(--bg);
+      font-size: 0.95rem;
+      transition: all 0.2s ease;
+    }
+
+    .form-group input:focus {
+      border-color: var(--primary);
+      background: white;
+      box-shadow: 0 0 0 3px rgba(108,99,255,0.1);
+    }
+
+    .form-group input::placeholder {
+      color: var(--muted);
+    }
+
+    .auth-submit {
+      width: 100%;
+      padding: 13px 20px;
+      background: linear-gradient(135deg, #6c63ff, #574fd6);
+      color: white;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      margin-top: 6px;
+      transition: all 0.3s ease;
+    }
+
+    .auth-submit:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(108,99,255,0.4);
+    }
+
+    .auth-submit:active {
+      transform: translateY(0);
+    }
+
+    .auth-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .auth-error {
+      background: #fee2e2;
+      border: 1px solid #fca5a5;
+      color: #991b1b;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      margin-bottom: 20px;
+      display: none;
+      animation: shake 0.3s ease;
+    }
+
+    .auth-error.show {
+      display: block;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .auth-divider {
+      display: flex;
+      align-items: center;
+      margin: 24px 0;
+      gap: 12px;
+    }
+
+    .auth-divider::before,
+    .auth-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .auth-divider-text {
+      font-size: 0.85rem;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .auth-back {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    .auth-back a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .auth-back a:hover {
+      color: var(--primary-dark);
+    }
+
+    @media (max-width: 480px) {
+      .auth-card {
+        padding: 32px 24px;
+      }
+
+      .auth-logo {
+        font-size: 1.8rem;
+      }
+    }
+  </style>
+</head>
+<body>
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-logo">🔗 SocialConnect</div>
+    <div class="auth-subtitle">Connect with amazing people</div>
+
+    <div class="auth-tabs">
+      <button class="auth-tab active" id="tab-login" onclick="switchTab('login')">Login</button>
+      <button class="auth-tab" id="tab-signup" onclick="switchTab('signup')">Sign Up</button>
+    </div>
+
+    <div id="auth-error" class="auth-error"></div>
+
+    <!-- LOGIN FORM -->
+    <form id="login-form" onsubmit="handleLogin(event)">
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="l-email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="l-password" placeholder="••••••••" required>
+      </div>
+      <button type="submit" class="auth-submit" id="login-btn">Login to SocialConnect</button>
+    </form>
+
+    <!-- SIGNUP FORM -->
+    <form id="signup-form" style="display:none" onsubmit="handleSignup(event)">
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" id="s-name" placeholder="John Doe" required>
+      </div>
+      <div class="form-group">
+        <label>Email Address</label>
+        <input type="email" id="s-email" placeholder="you@example.com" required>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" id="s-password" placeholder="Min 6 characters" minlength="6" required>
+      </div>
+      <button type="submit" class="auth-submit" id="signup-btn">Create My Account</button>
+    </form>
+
+    <div class="auth-back">
+      <a href="/">← Back to Home</a>
+    </div>
+  </div>
+</div>
+
+<script src="/js/app.js"></script>
+<script>
+  // Redirect if already logged in
+  if (Auth.get()) window.location.href = '/';
+
+  function switchTab(tab) {
+    document.getElementById('login-form').style.display  = tab === 'login'  ? '' : 'none';
+    document.getElementById('signup-form').style.display = tab === 'signup' ? '' : 'none';
+    document.getElementById('tab-login').classList.toggle('active',  tab === 'login');
+    document.getElementById('tab-signup').classList.toggle('active', tab === 'signup');
+    document.getElementById('auth-error').classList.remove('show');
+  }
+
+  function showError(msg) {
+    const el = document.getElementById('auth-error');
+    el.textContent = msg;
+    el.classList.add('show');
+  }
+
+  async function handleLogin(e) {
+    e.preventDefault();
+    const btn = document.getElementById('login-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Logging in…';
+    btn.disabled = true;
+    try {
+      const data = await API.post('/login', {
+        email: document.getElementById('l-email').value.trim(),
+        password: document.getElementById('l-password').value
+      });
+      Auth.set(data.user);
+      showToast('Welcome back, ' + data.user.name + '! 👋', 'success');
+      setTimeout(() => window.location.href = '/', 800);
+    } catch(err) {
+      showError(err.message);
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
+  }
+
+  async function handleSignup(e) {
+    e.preventDefault();
+    const btn = document.getElementById('signup-btn');
+    const originalText = btn.textContent;
+    btn.textContent = 'Creating…';
+    btn.disabled = true;
+    try {
+      const data = await API.post('/register', {
+        name: document.getElementById('s-name').value.trim(),
+        email: document.getElementById('s-email').value.trim(),
+        password: document.getElementById('s-password').value
+      });
+      Auth.set(data.user);
+      showToast('Welcome to SocialConnect! 🎉', 'success');
+      setTimeout(() => window.location.href = '/', 800);
+    } catch(err) {
+      showError(err.message);
+      btn.textContent = originalText;
+      btn.disabled = false;
+    }
+  }
+</script>
+</body>
+</html>

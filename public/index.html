@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SocialConnect – Connect with the World</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <style>
+    /* LANDING PAGE STYLES */
+    .landing-hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f64f59 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px;
+      color: white;
+      text-align: center;
+    }
+
+    .landing-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.95);
+      backdrop-filter: blur(10px);
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .landing-logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #6c63ff, #ff6584);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .landing-nav {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+
+    .landing-nav a {
+      color: #0f172a;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      padding: 8px 16px;
+      border-radius: 8px;
+      transition: all 0.2s ease;
+    }
+
+    .landing-nav a:hover {
+      background: #f0f2f5;
+    }
+
+    .landing-nav .btn-login {
+      background: #6c63ff;
+      color: white;
+      border-radius: 8px;
+    }
+
+    .landing-nav .btn-login:hover {
+      background: #574fd6;
+      transform: translateY(-2px);
+    }
+
+    .hero-content {
+      max-width: 700px;
+      animation: fadeInUp 0.8s ease;
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 900;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 32px;
+      opacity: 0.95;
+      line-height: 1.6;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn-hero {
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary-hero {
+      background: white;
+      color: #6c63ff;
+    }
+
+    .btn-primary-hero:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    }
+
+    .btn-secondary-hero {
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border: 2px solid white;
+      backdrop-filter: blur(10px);
+    }
+
+    .btn-secondary-hero:hover {
+      background: rgba(255,255,255,0.3);
+      transform: translateY(-4px);
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* FEATURES SECTION */
+    .features-section {
+      padding: 80px 20px;
+      background: var(--bg);
+    }
+
+    .features-container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border-radius: 16px;
+      padding: 32px 24px;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+      border: 1px solid var(--border);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .feature-icon {
+      font-size: 3rem;
+      margin-bottom: 16px;
+    }
+
+    .feature-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .feature-desc {
+      color: var(--muted);
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    /* STATS SECTION */
+    .stats-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 60px 20px;
+      text-align: center;
+    }
+
+    .stats-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 40px;
+    }
+
+    .stat-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .stat-text {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    /* CTA SECTION */
+    .cta-section {
+      padding: 80px 20px;
+      background: var(--card);
+      text-align: center;
+    }
+
+    .cta-container {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .cta-title {
+      font-size: 2rem;
+      font-weight: 900;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+
+    .cta-desc {
+      font-size: 1.1rem;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.6;
+    }
+
+    /* LANDING FOOTER */
+    .landing-footer {
+      background: var(--text);
+      color: white;
+      padding: 40px 20px;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .landing-footer a {
+      color: #6c63ff;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .landing-footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* FEED SECTION */
+    .feed-section {
+      display: none;
+    }
+
+    .feed-section.active {
+      display: block;
+    }
+
+    @media (max-width: 768px) {
+      .landing-header {
+        flex-direction: column;
+        gap: 12px;
+        padding: 12px 16px;
+      }
+
+      .landing-nav {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero-title {
+        font-size: 1.8rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LANDING PAGE -->
+<div id="landing-page">
+  <!-- HEADER -->
+  <header class="landing-header">
+    <div class="landing-logo">🔗 SocialConnect</div>
+    <nav class="landing-nav">
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="/login" class="btn-login">Login</a>
+    </nav>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="landing-hero">
+    <div class="hero-content">
+      <h1 class="hero-title">Connect, Share & Grow Together</h1>
+      <p class="hero-subtitle">Join SocialConnect – The modern social network where your voice matters. Share your thoughts, connect with friends, and discover amazing people from around the world.</p>
+      <div class="hero-buttons">
+        <a href="/login" class="btn-hero btn-primary-hero">Get Started</a>
+        <a href="#features" class="btn-hero btn-secondary-hero">Learn More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FEATURES SECTION -->
+  <section class="features-section" id="features">
+    <div class="features-container">
+      <div class="section-header">
+        <h2 class="section-title">Why Choose SocialConnect?</h2>
+        <p class="section-desc">Everything you need for a better social experience</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">📝</div>
+          <h3 class="feature-title">Share Your Story</h3>
+          <p class="feature-desc">Post your thoughts, photos, and updates with our intuitive editor. Express yourself freely.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">❤️</div>
+          <h3 class="feature-title">Engage & Connect</h3>
+          <p class="feature-desc">Like, comment, and share posts. Build meaningful connections with your community.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">👥</div>
+          <h3 class="feature-title">Follow Friends</h3>
+          <p class="feature-desc">Discover and follow people who inspire you. Build your network effortlessly.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔍</div>
+          <h3 class="feature-title">Easy Discovery</h3>
+          <p class="feature-desc">Find interesting people and content. Explore new perspectives and ideas.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3 class="feature-title">Your Dashboard</h3>
+          <p class="feature-desc">Track your activity, likes, followers, and engagement in one place.</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔐</div>
+          <h3 class="feature-title">Secure & Private</h3>
+          <p class="feature-desc">Your data is safe with us. We use industry-standard security practices.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS SECTION -->
+  <section class="stats-section">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-number">10K+</div>
+        <div class="stat-text">Active Users</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">50K+</div>
+        <div class="stat-text">Posts Created</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">200K+</div>
+        <div class="stat-text">Likes & Comments</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">99.9%</div>
+        <div class="stat-text">Uptime</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA SECTION -->
+  <section class="cta-section" id="about">
+    <div class="cta-container">
+      <h2 class="cta-title">Ready to Join Our Community?</h2>
+      <p class="cta-desc">Create your account today and start connecting with people who share your interests. It takes just a minute!</p>
+      <a href="/login" class="btn-hero btn-primary-hero" style="background: linear-gradient(135deg, #6c63ff, #ff6584); color: white;">Create Account</a>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="landing-footer">
+    <p>© 2026 SocialConnect. All rights reserved. | Made with ❤️ by Md Aiman Shafi<strong>MD Aiman Shafi</strong></p>
+    <p style="margin-top: 12px;">Kalinga University | <a href="mailto:mdaimanshafi492@gmail.com">mdaimanshafi492@gmail.com</a> | +91-7543983040</p>
+  </footer>
+</div>
+
+<!-- FEED PAGE (for logged in users) -->
+<div id="feed-page" class="feed-section">
+  <nav class="navbar" id="navbar"></nav>
+
+  <div class="container">
+
+    <!-- SEARCH -->
+    <div class="search-box" style="position:relative">
+      <div class="search-icon">🔍</div>
+      <input type="text" id="search-input" placeholder="Search users…" 
+        oninput="searchUsers(this.value)" onblur="setTimeout(() => document.querySelector('.search-results')?.classList.remove('open'), 200)">
+      <div class="search-results"></div>
+    </div>
+
+    <!-- CREATE POST -->
+    <div class="card create-post" id="create-post-box" style="display:none">
+      <div class="create-post-top">
+        <div class="create-post-avatar" id="cp-avatar"></div>
+        <textarea id="post-content" placeholder="What's on your mind?" rows="2"
+          oninput="this.style.height='auto';this.style.height=this.scrollHeight+'px'"></textarea>
+      </div>
+      <div class="create-post-actions">
+        <input type="text" id="post-image" placeholder="🖼️ Image URL (optional)">
+        <button class="btn btn-primary btn-sm" onclick="createPost()">Post</button>
+      </div>
+    </div>
+
+    <!-- FEED -->
+    <div id="feed">
+      <div class="loader"><div class="spinner"></div>Loading posts…</div>
+    </div>
+
+  </div>
+
+  <footer>
+    <strong>CodeAlpha SocialConnect</strong> &nbsp;|&nbsp;
+    Developed by <strong>MD Aiman Shafi</strong> &nbsp;|&nbsp;
+    Kalinga University &nbsp;|&nbsp;
+    <a href="mailto:mdaimanshafi492@gmail.com">mdaimanshafi492@gmail.com</a> &nbsp;|&nbsp;
+    +91-7543983040
+  </footer>
+</div>
+
+<script src="/js/app.js"></script>
+<script>
+  const user = Auth.get();
+
+  if (user) {
+    // Show feed for logged in users
+    document.getElementById('landing-page').style.display = 'none';
+    document.getElementById('feed-page').classList.add('active');
+    renderNavbar('home');
+
+    // Show create post box if logged in
+    const box = document.getElementById('create-post-box');
+    box.style.display = '';
+    const av = document.getElementById('cp-avatar');
+    av.innerHTML = user.avatar ? `<img src="${user.avatar}">` : initials(user.name);
+  }
+
+  async function loadFeed() {
+    try {
+      const posts = await API.get('/posts');
+      const feed = document.getElementById('feed');
+      if (!posts.length) {
+        feed.innerHTML = `<div class="empty-state"><div class="empty-icon">📭</div><p>No posts yet. Be the first to post!</p></div>`;
+        return;
+      }
+      feed.innerHTML = posts.map(p => buildPostCard(p, user)).join('');
+    } catch(e) {
+      document.getElementById('feed').innerHTML = `<div class="empty-state"><p>Failed to load posts.</p></div>`;
+    }
+  }
+
+  async function createPost() {
+    if (!user) return showToast('Please login first', 'error');
+    const content = document.getElementById('post-content').value.trim();
+    const imageUrl = document.getElementById('post-image').value.trim();
+    if (!content) return showToast('Write something first!', 'error');
+    try {
+      const post = await API.post('/posts', { userEmail: user.email, userName: user.name, content, imageUrl });
+      document.getElementById('post-content').value = '';
+      document.getElementById('post-image').value = '';
+      document.getElementById('post-content').style.height = 'auto';
+      const feed = document.getElementById('feed');
+      const emptyState = feed.querySelector('.empty-state');
+      if (emptyState) feed.innerHTML = '';
+      feed.insertAdjacentHTML('afterbegin', buildPostCard(post, user));
+      showToast('Post shared! 🎉', 'success');
+    } catch(e) { showToast(e.message, 'error'); }
+  }
+
+  if (user) {
+    loadFeed();
+  }
+</script>
+</body>
+</html>

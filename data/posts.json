@@ -1,0 +1,91 @@
+[
+  {
+    "id": "8af32c1a-977f-42ba-af64-84b5fa80a374",
+    "userEmail": "mdaimanshafi492@gmail.com",
+    "userName": "MD AIMAN SHAFI",
+    "content": "Just launched SocialConnect v2.0! A modern social media platform with amazing features. Thanks to everyone who supported this journey! 🚀💜",
+    "imageUrl": "",
+    "likes": [
+      "sarah@example.com",
+      "alex@example.com",
+      "emma@example.com",
+      "test@gmail.com",
+      "ai@gmail.com"
+    ],
+    "createdAt": "2026-04-19T18:48:58.603Z"
+  },
+  {
+    "id": "post-1",
+    "userEmail": "sarah@example.com",
+    "userName": "Sarah Anderson",
+    "content": "Just finished an amazing hiking trip to the mountains! The views were absolutely breathtaking. Nothing beats nature! 🏔️✨",
+    "imageUrl": "",
+    "likes": [
+      "alex@example.com",
+      "emma@example.com",
+      "mdaimanshafi492@gmail.com"
+    ],
+    "createdAt": "2026-04-18T14:30:00.000Z"
+  },
+  {
+    "id": "post-2",
+    "userEmail": "alex@example.com",
+    "userName": "Alex Mitchell",
+    "content": "Excited to announce that we just launched our new AI-powered project! After months of hard work, it's finally live. Check it out! 🚀",
+    "imageUrl": "",
+    "likes": [
+      "sarah@example.com",
+      "emma@example.com",
+      "john@example.com",
+      "mdaimanshafi492@gmail.com"
+    ],
+    "createdAt": "2026-04-17T09:45:00.000Z"
+  },
+  {
+    "id": "post-3",
+    "userEmail": "emma@example.com",
+    "userName": "Emma Wilson",
+    "content": "Working on a new design project about sustainable fashion. Can't wait to share the final result! 🎨💚",
+    "imageUrl": "",
+    "likes": [
+      "sarah@example.com",
+      "alex@example.com"
+    ],
+    "createdAt": "2026-04-16T16:20:00.000Z"
+  },
+  {
+    "id": "post-4",
+    "userEmail": "john@example.com",
+    "userName": "John Developer",
+    "content": "Just contributed to an amazing open-source project! Loving the community here. Everyone should try contributing to open source! 💻🔥",
+    "imageUrl": "",
+    "likes": [
+      "alex@example.com",
+      "mdaimanshafi492@gmail.com"
+    ],
+    "createdAt": "2026-04-15T11:00:00.000Z"
+  },
+  {
+    "id": "post-5",
+    "userEmail": "sarah@example.com",
+    "userName": "Sarah Anderson",
+    "content": "Found the cutest little café in the old town. The coffee here is seriously to die for! ☕😍",
+    "imageUrl": "",
+    "likes": [
+      "alex@example.com",
+      "emma@example.com"
+    ],
+    "createdAt": "2026-04-14T10:30:00.000Z"
+  },
+  {
+    "id": "4e5afb13-7e3a-471d-a626-580c6b20c586",
+    "userEmail": "ai@gmail.com",
+    "userName": "AI",
+    "content": "sgoqGwfioajpodgh",
+    "imageUrl": "",
+    "likes": [
+      "ai@gmail.com"
+    ],
+    "createdAt": "2026-04-20T10:24:35.412Z"
+  }
+]

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Discover – SocialConnect</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<nav class="navbar" id="navbar"></nav>
+
+<div class="container-wide">
+
+  <div style="margin-bottom:24px">
+    <h2 style="font-size:1.5rem;font-weight:800">✨ Discover People</h2>
+    <p style="color:var(--muted);font-size:0.9rem;margin-top:4px">Find amazing people to follow and connect with</p>
+  </div>
+
+  <!-- DISCOVER GRID -->
+  <div id="discover-users" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;">
+    <div class="loader"><div class="spinner"></div>Loading…</div>
+  </div>
+
+</div>
+
+<footer>
+  <strong>CodeAlpha SocialConnect</strong> &nbsp;|&nbsp;
+  Developed by <strong>MD Aiman Shafi</strong> &nbsp;|&nbsp;
+  Kalinga University &nbsp;|&nbsp;
+  <a href="mailto:mdaimanshafi492@gmail.com">mdaimanshafi492@gmail.com</a> &nbsp;|&nbsp;
+  +91-7543983040
+</footer>
+
+<script src="/js/app.js"></script>
+<script>
+  const user = Auth.require();
+  renderNavbar('discover');
+  loadDiscoverUsers();
+</script>
+</body>
+</html>

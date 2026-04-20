@@ -1,0 +1,132 @@
+[
+  {
+    "id": "1c783bfb-cdc1-4bb5-a5d1-8f3cccaf27a2",
+    "name": "MD AIMAN SHAFI",
+    "email": "mdaimanshafi492@gmail.com",
+    "password": "$2a$10$qNeZhCkNn0B8GzKJP8vZEOf6L5VHYz5qPVJ8Ds8vQEYvR0L6y1nqy",
+    "avatar": "",
+    "bio": "Creator of SocialConnect | Full-stack developer 💻 | Love coding and connecting people!",
+    "followers": [
+      "sarah@example.com",
+      "alex@example.com",
+      "test@gmail.com",
+      "aiman@gmail.com"
+    ],
+    "following": [
+      "alex@example.com"
+    ],
+    "createdAt": "2026-04-19T18:47:24.234Z"
+  },
+  {
+    "id": "demo-user-1",
+    "name": "Sarah Anderson",
+    "email": "sarah@example.com",
+    "password": "$2a$10$yrEHKjf8.9Y3RmJ0zK7W5eO5P1L3K0V2M9Q8X5Z9D4C5F6G7H8",
+    "avatar": "",
+    "bio": "Travel enthusiast 🌍 | Coffee lover ☕ | Always up for an adventure!",
+    "followers": [
+      "mdaimanshafi492@gmail.com",
+      "alex@example.com",
+      "emma@example.com",
+      "test@gmail.com",
+      "aiman@gmail.com"
+    ],
+    "following": [
+      "alex@example.com",
+      "emma@example.com"
+    ],
+    "createdAt": "2026-01-15T10:30:00.000Z"
+  },
+  {
+    "id": "demo-user-2",
+    "name": "Alex Mitchell",
+    "email": "alex@example.com",
+    "password": "$2a$10$nP8K7L0M1N2O3Q4R5S6T7U8V9W0X1Y2Z3A4B5C6D7E8F9G0H1",
+    "avatar": "",
+    "bio": "Tech innovator | AI enthusiast | Building the future 🚀",
+    "followers": [
+      "sarah@example.com",
+      "emma@example.com",
+      "mdaimanshafi492@gmail.com",
+      "aiman@gmail.com"
+    ],
+    "following": [
+      "sarah@example.com",
+      "emma@example.com"
+    ],
+    "createdAt": "2026-02-01T08:45:00.000Z"
+  },
+  {
+    "id": "demo-user-3",
+    "name": "Emma Wilson",
+    "email": "emma@example.com",
+    "password": "$2a$10$qW9X8Y7Z6A5B4C3D2E1F0G9H8I7J6K5L4M3N2O1P0Q9R8S7T6",
+    "avatar": "",
+    "bio": "Designer & creative thinker | Art is life 🎨 | Let's create together",
+    "followers": [
+      "sarah@example.com",
+      "alex@example.com"
+    ],
+    "following": [
+      "alex@example.com",
+      "sarah@example.com"
+    ],
+    "createdAt": "2026-01-20T14:20:00.000Z"
+  },
+  {
+    "id": "demo-user-4",
+    "name": "John Developer",
+    "email": "john@example.com",
+    "password": "$2a$10$cP7Q8R9S0T1U2V3W4X5Y6Z7A8B9C0D1E2F3G4H5I6J7K8L9M0",
+    "avatar": "",
+    "bio": "Full-stack developer | Open source contributor | Code is poetry 💻",
+    "followers": [
+      "alex@example.com"
+    ],
+    "following": [
+      "alex@example.com",
+      "sarah@example.com"
+    ],
+    "createdAt": "2026-02-10T11:15:00.000Z"
+  },
+  {
+    "id": "3dd0e7da-aff9-473e-853e-fcab459817b1",
+    "name": "AI",
+    "email": "test@gmail.com",
+    "password": "$2a$10$CGKMJvwV/DGhUti5E4v/PO33B0PVX2BpoTPyKmpaEODfDN1yBcstO",
+    "avatar": "",
+    "bio": "",
+    "followers": [],
+    "following": [
+      "sarah@example.com",
+      "mdaimanshafi492@gmail.com"
+    ],
+    "createdAt": "2026-04-20T09:47:43.619Z"
+  },
+  {
+    "id": "66c6ca43-a4b7-42bb-825c-1e5c07c4c79f",
+    "name": "AI",
+    "email": "ai@gmail.com",
+    "password": "$2a$10$xM1W3rXeqcZm/mZ/7EpO4uZdxLfZUqe0HZDxyNBwbNUz/p1GHLWJ2",
+    "avatar": "",
+    "bio": "",
+    "followers": [],
+    "following": [],
+    "createdAt": "2026-04-20T10:23:53.397Z"
+  },
+  {
+    "id": "068eec47-a312-4df4-bad2-5cca3fc5c61f",
+    "name": "AI man",
+    "email": "aiman@gmail.com",
+    "password": "$2a$10$brJn17TiM4jvTCJ67wYgVuPpm1vcUeUo5req8hMdp1qlM7nofGfqu",
+    "avatar": "",
+    "bio": "",
+    "followers": [],
+    "following": [
+      "mdaimanshafi492@gmail.com",
+      "sarah@example.com",
+      "alex@example.com"
+    ],
+    "createdAt": "2026-04-20T12:00:24.618Z"
+  }
+]
